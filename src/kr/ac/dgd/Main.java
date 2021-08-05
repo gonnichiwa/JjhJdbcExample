@@ -6,20 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import kr.ac.dgd.input.InputProcess;
+
 public class Main {
 
     public static void main(String[] args) {
         /*
         * 사용자의 입력을 Scanner로 받아
-        * 1을 입력받을 경우
+        * === 1 이외 데이터가 입력될 경우 "다시 입력해 주세요" 하고 다시 입력받을 수 있도록 한다. ===
+        * 1을 입력받을 경우 학생 테이블을 전체 조회 한다.
         * 어제 mariadb 에서 정의한 Student 테이블의 데이터를 모두 조회하여
         * 출력
         * */
-//        Scanner sc = new Scanner(System.in); // in : 멤버변수
-//        System.out.println("번호를 입력하시오"); // 녹색 : 메소드
-//        int selectedNumber = sc.nextInt();
-//
-//        System.out.println("선택된 번호 : " + selectedNumber);
+
+        /*
+        * === 1 이외 데이터가 입력될 경우 "다시 입력해 주세요" 하고 다시 입력받을 수 있도록 한다. ===
+        * */
+        String selectedNumber = new InputProcess().validateUserInput();
+        System.out.println("선택된 번호 : " + selectedNumber);
 
         // Connection, PreparedStatement, ResultSet은 interface 객체이다.
         Connection conn = null;
