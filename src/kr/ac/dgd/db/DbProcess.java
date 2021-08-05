@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kr.ac.dgd.core.Menu;
+
 public class DbProcess {
     private static final String DB_URL  = "jdbc:mariadb://localhost:3306/DGD";
     private static final String DB_USER = "root";
@@ -26,7 +28,7 @@ public class DbProcess {
 
         // selectedNumber에 따라 쿼리를 달리 한다.
         switch (this.selectedNumber){
-            case "1":
+            case Menu.SELECT:
                 pstmt = conn.prepareStatement("select * from Student");
                 rs = pstmt.executeQuery();
                 /* 쿼리날린 결과를 가지고 콘솔에 출력한다. */
@@ -39,7 +41,7 @@ public class DbProcess {
                             + rs.getString(5));
                 }
                 break;
-            case "2": // 신규 Student를 추가 한다.
+            case Menu.INSERT: // 신규 Student를 추가 한다.
                 // 이름은 뭔지 나이는 몇살인지 번호는 뭔지 이메일은 뭔지 입력을 받아서 쿼리 실행 하는 코드들...
                 Student s = Student.buildStudent();
                 // max id + 1을 가져온다, 새로운 id를 db에 insert 하기 위해
