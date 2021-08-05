@@ -49,6 +49,7 @@ public class DbProcess {
                     int maxId = rs.getInt(1);
                     System.out.println("maxId = " + maxId);
                     pstmt = conn.prepareStatement("insert into Student values (?, ?, ?, ?, ?)");
+                    // "?"의 순서 (1부터)에 따라 값을 셋팅 한다.
                     pstmt.setInt(1, maxId);
                     pstmt.setString(2, s.getName());
                     pstmt.setInt(3, s.getAge());
@@ -56,10 +57,11 @@ public class DbProcess {
                     pstmt.setString(5, s.getEmail());
                     System.out.println("INSERT 완료");
 
-                    int updatedRows = pstmt.executeUpdate();
+                    int updatedRows = pstmt.executeUpdate(); // db로 업데이트 (commit)
                     System.out.println("updatedRows: " + updatedRows);
+                } else {
+                    throw new SQLException("Can't execute query select max(id) + 1 from Student");
                 }
-                break;
             default :
                 System.out.println("nothing to do"); break;
         }
