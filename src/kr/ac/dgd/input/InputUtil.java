@@ -1,8 +1,37 @@
 package kr.ac.dgd.input;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.Scanner;
 
-public class InputProcess {
+public class InputUtil {
+
+    static Scanner strSc = new Scanner(System.in);
+
+    public static String getStringFromConsole(String defaultString) {
+        String result = strSc.next().trim();
+        if(result.equals("")){
+            result = defaultString;
+        }
+        return result;
+    }
+
+    // 콘솔에서 숫자 입력 받음
+    // 숫자 아닌 문자일 경우 경고 출력 하여 다시
+    public static int getIntFromConsole() {
+        String v = strSc.next();
+        if (!isNumber(v)) {
+            do {
+                System.out.println("숫자를 입력해 주세요, 나이는?..");
+                v = strSc.next();
+            } while (!isNumber(v));
+        }
+        return Integer.parseInt(v);
+    }
+
+    private static boolean isNumber(String v) {
+        return StringUtils.isNumeric(v);
+    }
 
     // 사용자의 입력을 받아서 지정된 값 이외에는 "다시 입력해주세요" 라고 반복하여 물어봄.
     public String validateUserInput() {
@@ -20,11 +49,10 @@ public class InputProcess {
         return sc.next(); // 사용자의 입력을 받은 데이터를 String으로 반환한다.
     }
 
-
     // 이 프로그램이 지정한 inputString에 속하는거면 false, 아니면 "다시 입력해 주세요" 하고 true 처리
     private boolean checkUserInputScope(String inputString) {
         switch (inputString) {
-            case "1": return false;
+            case "1": case "2": return false;
             default :
                 System.out.println("잘못 입력 하셨습니다. ");
                 System.out.println("주어진 메뉴중 하나를 골라 주세요");
@@ -36,5 +64,6 @@ public class InputProcess {
     private void printInfo() {
         System.out.println("아래 내용중 선택하세요.");
         System.out.println("1: 전체 학생 조회");
+        System.out.println("2: 새로운 학생 추가");
     }
 }
