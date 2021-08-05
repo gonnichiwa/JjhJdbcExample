@@ -16,7 +16,7 @@ public class InputProcess {
     }
 
     // 콘솔로부터 사용자의 입력을 받는 InputProcess에서만 쓸 수 있는 기능. (private)
-    private String inputFromUser(Scanner sc) {
+    private String inputFromUser(Scanner sc) {                              // private : 접근 제어자. 접근 : 해당 메소드가 선언된 클래스 이외의 다른 클래스에서 쓸수 있나 없나?
         return sc.next(); // 사용자의 입력을 받은 데이터를 String으로 반환한다.
     }
 
