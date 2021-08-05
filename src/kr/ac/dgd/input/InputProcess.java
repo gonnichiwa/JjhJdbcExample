@@ -10,13 +10,13 @@ public class InputProcess {
         Scanner sc = new Scanner(System.in);     // 사용자의 입력을 받기 위한 Scanner 객체의 인스턴스를 불러온다. (인스턴스를 불러온다 -> 이 프로그램이 실행될 때 Scanner객체를 쓸 수 있도록 메모리에 적재 해라)
         do {
             printInfo();                         // 사용자의 안내를 출력하는 메소드
-            userInputString = inputFromUser(sc);
+            userInputString = inputFromUserFromConsole(sc);
         } while (checkUserInputScope(userInputString)); // do - while 구문 : while 조건이 false 일때까지 do를 무한 반복한다.
         return userInputString;
     }
 
     // 콘솔로부터 사용자의 입력을 받는 InputProcess에서만 쓸 수 있는 기능. (private)
-    private String inputFromUser(Scanner sc) {                              // private : 접근 제어자. 접근 : 해당 메소드가 선언된 클래스 이외의 다른 클래스에서 쓸수 있나 없나?
+    private String inputFromUserFromConsole(Scanner sc) {                              // private : 접근 제어자. 접근 : 해당 메소드가 선언된 클래스 이외의 다른 클래스에서 쓸수 있나 없나?
         return sc.next(); // 사용자의 입력을 받은 데이터를 String으로 반환한다.
     }
 
