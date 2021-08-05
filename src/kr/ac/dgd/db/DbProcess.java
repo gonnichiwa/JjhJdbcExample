@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kr.ac.dgd.input.InputUtil;
-
 public class DbProcess {
     private static final String DB_URL  = "jdbc:mariadb://localhost:3306/DGD";
     private static final String DB_USER = "root";
@@ -43,15 +41,7 @@ public class DbProcess {
                 break;
             case "2": // 신규 Student를 추가 한다.
                 // 이름은 뭔지 나이는 몇살인지 번호는 뭔지 이메일은 뭔지 입력을 받아서 쿼리 실행 하는 코드들...
-                System.out.println("이름은?");
-                String name = InputUtil.getStringFromConsole("no name");
-                System.out.println("나이는?");
-                int age = InputUtil.getIntFromConsole();
-                System.out.println("번호는?");
-                String phone = InputUtil.getStringFromConsole("no phone number");
-                System.out.println("이메일은?");
-                String email = InputUtil.getStringFromConsole("no email");
-
+                Student s = Student.buildStudent();
                 // max id + 1을 가져온다, 새로운 id를 db에 insert 하기 위해
                 pstmt = conn.prepareStatement("select max(id) + 1 from Student");
                 rs = pstmt.executeQuery();
@@ -60,10 +50,10 @@ public class DbProcess {
                     System.out.println("maxId = " + maxId);
                     pstmt = conn.prepareStatement("insert into Student values (?, ?, ?, ?, ?)");
                     pstmt.setInt(1, maxId);
-                    pstmt.setString(2, name);
-                    pstmt.setInt(3, age);
-                    pstmt.setString(4, phone);
-                    pstmt.setString(5, email);
+                    pstmt.setString(2, s.getName());
+                    pstmt.setInt(3, s.getAge());
+                    pstmt.setString(4, s.getPhone());
+                    pstmt.setString(5, s.getEmail());
                     System.out.println("INSERT 완료");
 
                     int updatedRows = pstmt.executeUpdate();
