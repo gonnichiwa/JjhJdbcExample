@@ -56,6 +56,7 @@ public class DbProcess {
                 } else {
                     throw new SQLException("Can't execute query select max(id) + 1 from Student");
                 }
+                break;
             case Menu.UPDATE:
                 // 학생 정보의 수정
                 System.out.println("학생 정보의 수정");
