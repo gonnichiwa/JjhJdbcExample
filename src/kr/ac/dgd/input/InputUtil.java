@@ -2,9 +2,14 @@ package kr.ac.dgd.input;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import kr.ac.dgd.core.Menu;
+import kr.ac.dgd.db.Student;
 
 public class InputUtil {
 
@@ -24,7 +29,7 @@ public class InputUtil {
         String v = strSc.next();
         if (!isNumber(v)) {
             do {
-                System.out.println("숫자를 입력해 주세요, 나이는?..");
+                System.out.println("숫자를 입력해 주세요");
                 v = strSc.next();
             } while (!isNumber(v));
         }
@@ -33,6 +38,30 @@ public class InputUtil {
 
     private static boolean isNumber(String v) {
         return StringUtils.isNumeric(v);
+    }
+
+    // 콘솔 입력: 수정할 학생의 번호를 사용자로부터 받는다
+    //          -- (optional) : 이외 번호를 입력 받았을 경우 다시 입력해 주세요 출력하고 학생의 번호를 다시 받는다.
+    public static int getIdFromStudentList(List<Student> students) {
+        int usrSelectedId;
+        do {
+            usrSelectedId = InputUtil.getIntFromConsole(); // 숫자만 입력받음.
+            if(idIsExist(usrSelectedId, students)){
+                return usrSelectedId;
+            } else {
+                System.out.println("존재하지 않는 학생 id 입니다. id 번호를 선택하시오.");
+            }
+        } while (!idIsExist(usrSelectedId, students));
+        return usrSelectedId;
+    }
+
+    private static boolean idIsExist(int usrSelectedId, List<Student> studentIds) {
+        for(Student s: studentIds){
+            if(s.getId() == usrSelectedId){
+                return true;
+            }
+        }
+        return false;
     }
 
     // 사용자의 입력을 받아서 지정된 값 이외에는 "다시 입력해주세요" 라고 반복하여 물어봄.
@@ -67,5 +96,7 @@ public class InputUtil {
         System.out.println("아래 내용중 선택하세요.");
         System.out.println("1: 전체 학생 조회");
         System.out.println("2: 새로운 학생 추가");
+        System.out.println("3: 학생번호 선택하여 수정");
+        System.out.println("4: 학생 삭제");
     }
 }

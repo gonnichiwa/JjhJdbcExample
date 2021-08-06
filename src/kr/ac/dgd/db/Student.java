@@ -9,8 +9,16 @@ public class Student {
     private String phone;
     private String email;
 
-    public static Student buildStudent() {
+    public Student() {}
+    public Student(int id, String name, int age, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+    }
 
+    public static Student buildStudent() {
         Student s = new Student();
         System.out.println("이름은?");
         s.name = InputUtil.getStringFromConsole("no name");
@@ -21,6 +29,10 @@ public class Student {
         System.out.println("이메일은?");
         s.email = InputUtil.getStringFromConsole("no email");
         return s;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getName(){
