@@ -65,7 +65,7 @@ public class DbProcess {
                 System.out.println("수정할 학생의 번호를 입력하세요.");
                 int sIdToUpdate = InputUtil.getIdFromStudentList(students);
                 System.out.println("수정할 학생 번호:" + sIdToUpdate);
-                // // 이름은 뭔지 나이는 몇살인지 번호는 뭔지 이메일은 뭔지 입력을 받는다
+                // 이름은 뭔지 나이는 몇살인지 번호는 뭔지 이메일은 뭔지 입력을 받는다
                 Student updateStd = Student.buildStudent();
                 // 업데이트 쿼리 수행
                 pstmt = conn.prepareStatement("UPDATE Student SET name=?, age=?, phone=?, email=? where id=?");
@@ -78,7 +78,11 @@ public class DbProcess {
                 System.out.println("업데이트 완료.");
                 break;
             case Menu.DELETE:
-               // 삭제를 수행
+                // 삭제를 수행
+                // 콘솔 출력 : 학생 정보의 삭제
+                // 콘솔 출력 : 삭제할 학생의 번호(id)를 입력 하세요
+                // 삭제 쿼리 수행
+
                 System.out.println("학생 정보의 삭제"); break;
             default :
                 System.out.println("nothing to do"); break;

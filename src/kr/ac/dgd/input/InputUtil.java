@@ -2,9 +2,6 @@ package kr.ac.dgd.input;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,15 +40,15 @@ public class InputUtil {
     // 콘솔 입력: 수정할 학생의 번호를 사용자로부터 받는다
     //          -- (optional) : 이외 번호를 입력 받았을 경우 다시 입력해 주세요 출력하고 학생의 번호를 다시 받는다.
     public static int getIdFromStudentList(List<Student> students) {
-        int usrSelectedId;
+        int usrSelectedId; // 사용자로부터 입력받는 번호
         do {
             usrSelectedId = InputUtil.getIntFromConsole(); // 숫자만 입력받음.
-            if(idIsExist(usrSelectedId, students)){
+            if(idIsExist(usrSelectedId, students)){        // 존재하는 학생의 id인지?
                 return usrSelectedId;
             } else {
                 System.out.println("존재하지 않는 학생 id 입니다. id 번호를 선택하시오.");
             }
-        } while (!idIsExist(usrSelectedId, students));
+        } while (!idIsExist(usrSelectedId, students)); // do - while문의 동작구조가 : while 조건절이 false가 뜰 때까지 do 구문을 반복한다.
         return usrSelectedId;
     }
 
