@@ -8,7 +8,7 @@ import kr.ac.dgd.core.Menu;
 
 public class InputUtil {
 
-    static Scanner strSc = new Scanner(System.in);
+    private static Scanner strSc = new Scanner(System.in); // strSc 멤버변수의 접근 제어자가 default : 같은 패키지 내에서만 접근이 가능하다.
 
     public static String getStringFromConsole(String defaultString) {
         String result = strSc.next().trim();
@@ -54,7 +54,7 @@ public class InputUtil {
     // 이 프로그램이 지정한 inputString에 속하는거면 false, 아니면 "다시 입력해 주세요" 하고 true 처리
     private boolean checkUserInputScope(String inputString) {
         switch (inputString) {
-            case Menu.SELECT: case Menu.INSERT: return false;
+            case Menu.SELECT: case Menu.INSERT: case Menu.UPDATE: case Menu.DELETE: return false;
             default :
                 System.out.println("잘못 입력 하셨습니다. ");
                 System.out.println("주어진 메뉴중 하나를 골라 주세요");

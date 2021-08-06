@@ -10,6 +10,7 @@ public class Student {
     private String email;
 
     public static Student buildStudent() {
+
         Student s = new Student();
         System.out.println("이름은?");
         s.name = InputUtil.getStringFromConsole("no name");
