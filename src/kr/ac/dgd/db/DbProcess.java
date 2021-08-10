@@ -100,7 +100,10 @@ public class DbProcess {
 
     private List<Student> showAllStudents(Connection conn, PreparedStatement pstmt, ResultSet rs) throws SQLException{
         List<Student> sList = new ArrayList<>();
-        pstmt = conn.prepareStatement("select * from Student");
+        pstmt = conn.prepareStatement("select * from Student where id between ? and ?");
+        // "?" 가 들어간 쿼리에 어떤 값을 집어 넣을건지? 를 결정함. ----> '동적 쿼리'
+        pstmt.setInt(1, 0);
+        pstmt.setInt(2, 5);
         rs = pstmt.executeQuery();
         /* 쿼리날린 결과를 가지고 콘솔에 출력한다. */
         while(rs.next()){
